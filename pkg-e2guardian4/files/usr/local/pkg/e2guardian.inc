@@ -260,6 +260,7 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 
 	if (is_process_running('e2guardian') && isset($boot_process) && $via_rpc == "no") {
 		log_error("[E2guardian] - Detected boot process pr:" . is_process_running('e2guardian') . " bp:" . isset($boot_process) . " rpc:" . $via_rpc);
+        log_error("[E2guardian] - Aborting config file generation");
 		return;
 	} else {
 		log_error("[E2guardian] - Save settings package call pr:" . is_process_running('e2guardian') . " bp:" . isset($boot_process) . " rpc:" . $via_rpc);
@@ -1530,11 +1531,12 @@ function e2guardian_start($via_rpc = "no", $install_process = false, $force_star
 			switch ($e2g_cfg['applyaction']){
 				case "rc.d":
 					log_error("Restarting e2g with rc.d script");
-					 mwexec("$script start");
+					 mwexec("$script stop");
+                     mwexec("$script start");
 					break;
 				case "-r":
-					log_error("Sending HUP to e2g processes");
-					exec("$max_threads;/usr/local/sbin/e2guardian -r");
+					log_error("Sending USR1 to e2g processes");
+					exec("$max_threads;/usr/local/sbin/e2guardian -g");
 					break;
 				default:
 					log_error("Restarting e2g by sending -Q action to e2g binaries");

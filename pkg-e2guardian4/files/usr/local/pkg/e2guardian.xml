@@ -143,12 +143,12 @@
 		<field>
                         <fielddescr>Apply action</fielddescr>
                         <fieldname>applyaction</fieldname>
-                        <description><![CDATA[Select action to do on E2guardian daemon within applyconfig]]></description>
+                        <description><![CDATA[Select action to do on E2guardian daemon within applyconfig.<br/> Sending a USR1 to the e2guardian process allows changes to be applied without killing the e2g process (and subsequently any active connections)]]></description>
                         <type>select</type>
                         <options>
                                 <option><name>Kill any running copy and start a new one</name><value>-Q</value></option>
                                 <option><name>Restart by SO rc.d script</name><value>rc.d</value></option>
-                                <option><name>Reload lists and groups files issuing a HUP</name><value>-r</value></option>
+                                <option><name>Reload lists and groups files issuing a USR1</name><value>-r</value></option>
                         </options>
                 </field>
 		<field>
@@ -280,3 +280,4 @@
 		e2guardian_check_dirty();
 	</custom_php_command_after_form>
 </packagegui>
+
