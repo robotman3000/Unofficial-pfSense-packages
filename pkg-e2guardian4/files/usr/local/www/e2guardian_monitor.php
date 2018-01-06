@@ -226,10 +226,10 @@ function showLog(content, url, program) {
 function updateAllLogs() {
 	showLog('e2gViewhead', 'e2guardian_monitor_data.php', 'accesshead');
 	showLog('e2gView', 'e2guardian_monitor_data.php', 'access');
-	//showLog('e2gerrorhead', 'e2guardian_monitor_data.php', 'e2gerrorhead');
-    //showLog('e2gerror', 'e2guardian_monitor_data.php', 'e2gerror');
-	//showLog('e2gWatchdoghead', 'e2guardian_monitor_data.php', 'starthead');
-	//showLog('e2gWatchdog', 'e2guardian_monitor_data.php', 'start');
+	showLog('e2gerrorhead', 'e2guardian_monitor_data.php', 'e2gerrorhead');
+    showLog('e2gerror', 'e2guardian_monitor_data.php', 'e2gerror');
+	showLog('e2gWatchdoghead', 'e2guardian_monitor_data.php', 'starthead');
+	showLog('e2gWatchdog', 'e2guardian_monitor_data.php', 'start');
 document.timeoutVal = $('#interval').val();
 
 	setTimeout(updateAllLogs, document.timeoutVal);
