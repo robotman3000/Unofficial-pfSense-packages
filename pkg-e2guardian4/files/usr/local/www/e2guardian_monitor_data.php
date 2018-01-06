@@ -134,6 +134,51 @@ if ($_POST) {
 						echo "</tr>\n";
 					}
 					break;
+                case 4:
+foreach ($logarr as $logent) {
+						//split log
+						//if (preg_match("/(\S+\s+\S+) (\S+) (\S+) (\S+) (.*) (GET|OPTIONS|POST|CONNECT) \d+ \d+ (.*) \d (\d\d\d) \S+ \S+ (\S+)/", $logent, $logline)) {
+                            //$logline = explode('/\t', $logent);
+                            $logline = preg_split("/\t/", $logent);
+                            // Word wrap the URL
+        	                $url = htmlentities($logline[3]);
+        	                $logline[3] = preg_replace("@\<\>@","",$logline[3]);
+                	        $url = html_autowrap($url);
+							
+                            $logline[4] = html_autowrap($logline[4]);
+
+							echo "<tr valign='top'>\n";
+
+							if (preg_match("/(404|50\d)/",$logline[10])) {
+								echo "<td><i class='fa fa-times text-warning'></i></td>\n";
+							} else  if (preg_match("/40\d/",$logline[10])) {
+								echo "<td><i class='fa fa-times text-danger'></i></td>\n";
+        	                } else if (preg_match("/30\d/",$logline[10])) {
+                	            echo "<td><i class='fa fa-arrow-circle-o-right text-success'></i></td>\n";
+                        	} else {
+                                echo "<td><i class='fa fa-check text-success'></i></td>\n";
+                                //echo "<td>" . print_r($logline) . "</td>\n";
+                            }
+
+                            echo "<td class='listlr' nowrap='nowrap'>" . e2gm($logline[1]) . "</td>\n";
+                            echo "<td $listr>" . e2gm($logline[5]) . "</td>\n";
+
+							if ($_REQUEST['error'] == 'detailed') {
+                                echo "<td $listr title='{$logline[3]}' width='*'>" . e2gm($url) . "</td>\n";
+							} else {
+                                echo "<td $listr title='{$logline[3]}' width='*'>" . e2gm(preg_replace("/(\?|;).*/","",$url)) . "</td>\n";
+							}
+
+                            echo "<td $listr>" . e2gm($logline[10]) . "</td>\n";
+                            echo "<td $listr>" . e2gm($logline[4]) . "</td>\n";
+                            echo "<td $listr>" . e2gm($logline[8]) . "</td>\n";
+                            echo "<td $listr>" . e2gm($logline[13]) . "</td>\n";
+
+//print_r($logline);
+                            echo "</tr>\n";
+						}
+					
+                    break;
 				default:
 					print "e2guardian log format selected is not implemented yet";
 					break;
@@ -251,3 +296,4 @@ function show_tds($tds) {
 }
 
 ?>
+
