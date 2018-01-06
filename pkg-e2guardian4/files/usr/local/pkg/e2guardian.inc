@@ -296,7 +296,8 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 			'logging_options' => 'logconnectionhandlingerrors',
 			'loglevel' => '3',
 			'logexceptionhits' => '2',
-			'logfileformat' => '1');
+			'logfileformat' => '1',
+            'logrotate' => 'on');
 	}
 	$e2guardian_log = $config['installedpackages']['e2guardianlog']['config'][0];
 	if (is_array($config['installedpackages']['e2guardianlimits'])) {
@@ -413,7 +414,10 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 	$loglevel = ($e2guardian_log['loglevel'] ? $e2guardian_log['loglevel'] : "2");
 	$logexceptionhits = ($e2guardian_log['logexceptionhits'] ? $e2guardian_log['logexceptionhits'] : "2");
 	$logfileformat = ($e2guardian_log['logfileformat'] ? $e2guardian_log['logfileformat'] : "1");
+	$logrotate = ($e2guardian_log['logrotate'] ? $e2guardian_log['logrotate'] : "on");
+	$logfilecount = ($e2guardian_log['logcount'] ? $e2guardian_log['logcount'] : "30");
 
+	
 	// check files
 	#create sample files
 	$files = array(
@@ -1277,6 +1281,15 @@ EOF;
 	$filterports = ($filterports == "" ? "filterports = $filterport" : $filterports);
 	include("/usr/local/pkg/e2guardian.conf.template");
 
+	//log rotation script
+	$cron_cmd = "/usr/local/bin/php -q /usr/local/www/e2guardian_logrotate.php";
+	if ($logrotate == "on") {
+		e2g_check_cron($cron_cmd, "create");
+	} else {
+		file_put_contents($cron_cmd, "", LOCK_EX);
+		e2g_check_cron($cron_cmd, "remove");
+	}
+	
 	//watchdog script
 	$cron_cmd = "/usr/local/bin/e2g_watchdog.sh";
 	if ($e2guardian['watchdog'] == "on") {

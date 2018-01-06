@@ -245,6 +245,19 @@
 				<option><name>Squid Log File Format Secure extension</name><value>7</value></option>-->
 			</options>
 		</field>
+		<field>
+			<fielddescr>Log Rotation</fielddescr>
+			<fieldname>logrotate</fieldname>
+			<description><![CDATA[ Log File Rotation]]></description>
+			<type>checkbox</type>
+		</field>
+		<field>
+			<fielddescr>Log File Count</fielddescr>
+			<fieldname>logcount</fieldname>
+			<description><![CDATA[ The number of old log files to keep]]></description>
+			<type>input</type>
+			<size>16</size>
+		</field>
 	</fields>
 	<custom_php_command_before_form>
 		e2guardian_check_config();

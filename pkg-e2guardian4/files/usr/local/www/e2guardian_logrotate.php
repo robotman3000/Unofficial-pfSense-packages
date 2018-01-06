@@ -35,31 +35,26 @@ require_once("xmlrpc_client.inc");
 require_once("e2guardian.inc");
 require_once("service-utils.inc");
 
-$file = "/tmp/e2g_scheds.txt";
-$e2g_sched_in_use = array();
-if (file_exists($file)) {
-	$last_scheds = unserialize(file_get_contents($file));
-	foreach ( $last_scheds as $sched => $last_status) {
-		$current_status = e2g_check_sched($sched);
-	}
-}
 
+log_error("e2guardian - rotating logs.");
 
-if ($last_scheds !== $e2g_sched_in_use) {
-	log_error("e2guardian - change on schedules, reapplying config.");
-	print "changes on schedule\n";
-	//update acl files
-	sync_package_e2guardian("yes");
-	clear_subsystem_dirty('e2guardian');
-	$max_threads = "sysctl kern.threads.max_threads_per_proc=20480";		
-	//reload e2guardian
-	//system("$max_threads;/usr/local/sbin/e2guardian -r");
-    service_control_restart('e2guardian');
-} else {
-	print "No changes on schedule\n";
-}
+//TODO: Make all of this less hardcoded and hacky
+service_control_stop("e2guardian");
+$e2guardian_log = $config['installedpackages']['e2guardianlog']['config'][0];
+$logfilecount = ($e2guardian_log['logfilecount'] ? $e2guardian_log['logfilecount'] : "30");
+$log="/var/log/e2guardian/access.log";
 
-//save new schedules states
-file_put_contents($file, serialize($e2g_sched_in_use), LOCK_EX);
+// This script is the logrotate script file distrubuted with e2guardian
+$logscript = "
+LOG=$log; 
+NUM_LOGS=$logfilecount;
+if [ -f \$LOG.\$NUM_LOGS ]; then rm -f \$LOG.\$NUM_LOGS; fi
+n=$(( \$NUM_LOGS - 1 ))
+while [ \$n -gt 0 ]; do   if [ -f \$LOG.\$n ]; then     mv \$LOG.\$n \$LOG.$(( \$n + 1 ));   fi;   n=$(( \$n - 1 )); done
+if [ -f \$LOG ]; then   mv \$LOG \$LOG.1; fi";
+
+system($script);
+
+service_control_start("e2guardian");
 
 ?>
