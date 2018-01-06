@@ -85,7 +85,21 @@ if (is_array($config['installedpackages']['e2guardianlog'])) {
 						</span>
 					</td>
 				</tr>
-				<?php if($e2glog['logfileformat'] == 1 || $e2glog['logdeniedcgi'] == "on") {?>
+                <tr>
+					<td width="22%" valign="top" class="vncellreq">Update Interval:</td>
+					<td width="78%" class="vtable">
+						<select name="interval" id="interval">
+							<option value="1000">1 second</option>
+							<option value="3000">3 seconds</option>
+							<option value="5000" selected="selected">5 seconds</option>
+							<option value="1000">10 seconds</option>
+							<option value="15000">15 seconds</option>
+							<option value="20000">20 seconds</option>
+						</select>
+						<br/>
+					</td>
+				</tr>
+				<?php if($e2glog['logfileformat'] == 1 || $e2glog['logfileformat'] == 4 || $e2glog['logdeniedcgi'] == "on") {?>
 				<tr>
 				<td width="22%" valign="top" class="vncellreq">Erro to show:</td>
                                         <td width="78%" class="vtable">
@@ -190,6 +204,7 @@ if (is_array($config['installedpackages']['e2guardianlog'])) {
 <!-- Function to call programs logs -->
 <script type="text/javascript">
 //<![CDATA[
+document.timeoutVal = 5000
 function showLog(content, url, program) {
 	jQuery.ajax(url,
 		{
@@ -211,16 +226,20 @@ function showLog(content, url, program) {
 function updateAllLogs() {
 	showLog('e2gViewhead', 'e2guardian_monitor_data.php', 'accesshead');
 	showLog('e2gView', 'e2guardian_monitor_data.php', 'access');
-	showLog('e2gerrorhead', 'e2guardian_monitor_data.php', 'e2gerrorhead');
-        showLog('e2gerror', 'e2guardian_monitor_data.php', 'e2gerror');
-	showLog('e2gWatchdoghead', 'e2guardian_monitor_data.php', 'starthead');
-	showLog('e2gWatchdog', 'e2guardian_monitor_data.php', 'start');
-	setTimeout(updateAllLogs, 5000);
+	//showLog('e2gerrorhead', 'e2guardian_monitor_data.php', 'e2gerrorhead');
+    //showLog('e2gerror', 'e2guardian_monitor_data.php', 'e2gerror');
+	//showLog('e2gWatchdoghead', 'e2guardian_monitor_data.php', 'starthead');
+	//showLog('e2gWatchdog', 'e2guardian_monitor_data.php', 'start');
+document.timeoutVal = $('#interval').val();
+
+	setTimeout(updateAllLogs, document.timeoutVal);
 }
 
 events.push(function() {
+//alert(document.timeoutVal);
 	updateAllLogs();
 });
 //]]>
 </script>
 <?php include("foot.inc"); ?>
+
