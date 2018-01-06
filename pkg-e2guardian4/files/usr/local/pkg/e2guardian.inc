@@ -414,7 +414,7 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 	$loglevel = ($e2guardian_log['loglevel'] ? $e2guardian_log['loglevel'] : "2");
 	$logexceptionhits = ($e2guardian_log['logexceptionhits'] ? $e2guardian_log['logexceptionhits'] : "2");
 	$logfileformat = ($e2guardian_log['logfileformat'] ? $e2guardian_log['logfileformat'] : "1");
-	$logrotate = ($e2guardian_log['logrotate'] ? $e2guardian_log['logrotate'] : "on");
+	$logrotate = ($e2guardian_log['logrotate'] == "on" ? "on" : "off");
 	$logfilecount = ($e2guardian_log['logcount'] ? $e2guardian_log['logcount'] : "30");
 
 	
@@ -488,6 +488,7 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 			mkdir ($dir, 0755, true);
 		}
 	}
+
 	$enablessl=($e2guardian["enablessl"] == "on" ? "on" : "off");
 	$ca_cert = lookup_ca($e2guardian["dca"]);
 	if ($ca_cert != false) {
@@ -1282,9 +1283,11 @@ EOF;
 	include("/usr/local/pkg/e2guardian.conf.template");
 
 	//log rotation script
+    log_error("Checking log rotation");
 	$cron_cmd = "/usr/local/bin/php -q /usr/local/www/e2guardian_logrotate.php";
 	if ($logrotate == "on") {
-		e2g_check_cron($cron_cmd, "create");
+        log_error("Log rotate on");
+		e2g_check_cron($cron_cmd, "create", "0", "0");
 	} else {
 		file_put_contents($cron_cmd, "", LOCK_EX);
 		e2g_check_cron($cron_cmd, "remove");

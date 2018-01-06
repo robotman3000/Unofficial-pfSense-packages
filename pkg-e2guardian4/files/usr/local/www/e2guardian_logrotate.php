@@ -40,21 +40,36 @@ log_error("e2guardian - rotating logs.");
 
 //TODO: Make all of this less hardcoded and hacky
 service_control_stop("e2guardian");
+
+log_error("e2guardian - stoping");
 $e2guardian_log = $config['installedpackages']['e2guardianlog']['config'][0];
-$logfilecount = ($e2guardian_log['logfilecount'] ? $e2guardian_log['logfilecount'] : "30");
+$logfilecount = ($e2guardian_log['logcount'] ? $e2guardian_log['logcount'] : "30");
 $log="/var/log/e2guardian/access.log";
+//log_error("e2guardian - max logs: " . $logfilecount);
+// This script is the logrotate script file distrubuted with e2guardian translated to php
+if (file_exists("{$log}.{$logfilecount}")){
+    //log_error("e2guardian - deleting: " . $log . $logfilecount);
+	unlink("{$log}.{$logfilecount}");
+}
+$n = $logfilecount - 1;
+while ($n > 0){
+    $m = $n + 1;
+    if(file_exists("{$log}.{$n}")){
+        //log_error("e2guardian - moving: " . $log . $n . " to " . $log . ($n + 1));
+		rename("{$log}.{$n}", "{$log}.{$m}");
+	}
+	$n--;
+}
+if (file_exists($log)){
+    //log_error("e2guardian - moving: " . $log . " to " . $log . "1");
+	rename($log, "{$log}.1");
+}
 
-// This script is the logrotate script file distrubuted with e2guardian
-$logscript = "
-LOG=$log; 
-NUM_LOGS=$logfilecount;
-if [ -f \$LOG.\$NUM_LOGS ]; then rm -f \$LOG.\$NUM_LOGS; fi
-n=$(( \$NUM_LOGS - 1 ))
-while [ \$n -gt 0 ]; do   if [ -f \$LOG.\$n ]; then     mv \$LOG.\$n \$LOG.$(( \$n + 1 ));   fi;   n=$(( \$n - 1 )); done
-if [ -f \$LOG ]; then   mv \$LOG \$LOG.1; fi";
+//$result = system($script);
+//log_error("e2guardian - Rotate command result: " . $result);
 
-system($script);
-
+log_error("e2guardian - starting");
 service_control_start("e2guardian");
 
+log_error("e2guardian - log rotation complete.");
 ?>
