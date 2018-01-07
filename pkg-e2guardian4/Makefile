@@ -117,12 +117,6 @@ do-install:
 		${STAGEDIR}${PREFIX}/www/shortcuts
 	${INSTALL_DATA} -m 0644 ${FILESDIR}${DATADIR}/info.xml \
 		${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} -m 0700 ${FILESDIR}/root/e2guardian.bsd.sh \
-		${STAGEDIR}/root
-	${INSTALL_DATA} -m 0644 ${FILESDIR}/root/pkg_edit.patch \
-		${STAGEDIR}/root
-	${INSTALL_DATA} -m 0644 ${FILESDIR}/root/pkg.patch \
-		${STAGEDIR}/root
 	@${REINPLACE_CMD} -i '' -e "s|%%PKGVERSION%%|${PKGVERSION}|" \
 		${STAGEDIR}${DATADIR}/info.xml
 	@${REINPLACE_CMD} -i '' -e "s|%%PKGVERSION%%|${PKGVERSION}|" \

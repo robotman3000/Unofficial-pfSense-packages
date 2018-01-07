@@ -45,47 +45,6 @@ if ($uname['machine'] == 'amd64') {
 	ini_set('memory_limit', '250M');
 }
 
-function e2guardian_acl_submenu_print(){
-
-$s_menu=array(	'antivirus' => array('pkg_edit','Antivirus'),
-		'pics' => array('pkg','Pics'),
-		'phrase' => array('pkg','Phrase Lists'),
-		'site' => array('pkg','Site Lists'),
-		'url'  => array('pkg','Url Lists'),
-		'file' => array('pkg','Extension List'),
-		'content' => array('pkg','Content Lists'),
-		'header' => array('pkg','Header'),
-		'search' => array('pkg','Search Engine'));
-
-?>
-<script src="/vendor/jquery/jquery-1.12.0.min.js"></script>
-<script>
-submenu= '<nav class="navbar navbar-inverse">';
-submenu= submenu + '<div class="container-static">'; 
-submenu= submenu + '<ul class="nav navbar-nav">';
-<?php
-foreach ($s_menu as $xml=>$info) {
-	$active="";
-	if (preg_match("/{$xml}_acl.xml/",$_SERVER['REQUEST_URI'])) {
-	 	$active="class='active'";
-	}
-	print "submenu= submenu + \"<li {$active}><a href='/{$info[0]}.php?xml=e2guardian_{$xml}_acl.xml&id=0'>{$info[1]}</a></li>\";\n";
-}
-?>
-submenu = submenu + '</ul></div></nav>';
-
-$( document ).ready(function(){
-	if ($("#submenu").length) {
-		$("#submenu").prepend(submenu);
-	} else {
-		$("#mainarea").prepend(submenu);
-	}
-	});
-
-</script>
-
-<?
-}
 function e2_text_area_decode($text) {
 	return preg_replace('/\r\n/', "\n", base64_decode($text));
 }
@@ -1724,9 +1683,6 @@ function e2guardian_validate_input($post, &$input_errors) {
 }
 
 function e2guardian_php_install_command() {
-	if (file_exists("/root/e2guardian.bsd.sh")) {
-		system("/bin/sh /root/e2guardian.bsd.sh");
-	}
 	sync_package_e2guardian("no", true);
 	echo "Checking Blacklist...\n";
 	if (!file_exists("/usr/local/pkg/blacklist.tgz")) {

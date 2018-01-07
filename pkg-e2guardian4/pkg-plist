@@ -42,6 +42,3 @@ www/shortcuts/pkg_e2guardian.inc
 %%DATADIR%%/info.xml
 @dir /etc/inc/priv
 /etc/inc/priv/e2guardian.priv.inc
-/root/e2guardian.bsd.sh
-/root/pkg_edit.patch
-/root/pkg.patch
