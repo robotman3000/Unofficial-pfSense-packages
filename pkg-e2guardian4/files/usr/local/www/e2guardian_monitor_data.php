@@ -56,6 +56,9 @@ if ($_POST) {
 				case 3:
                                		show_tds(array("","Date", "User", "IP", "Status", "Address"));
 					break;
+				case 4:
+					show_tds(array("","IP", "Method", "Url", "Response", "Reason", "List Category", "Group"));
+					break;
 			}
 			break;
 		case 'e2gerrorhead':

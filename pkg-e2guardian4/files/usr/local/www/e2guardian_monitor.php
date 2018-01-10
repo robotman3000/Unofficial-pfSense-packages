@@ -97,6 +97,9 @@ if (is_array($config['installedpackages']['e2guardianlog'])) {
 							<option value="20000">20 seconds</option>
 						</select>
 						<br/>
+						<span class="vexpl">
+							<?=gettext("How often log entries are updated.")?>
+						</span>
 					</td>
 				</tr>
 				<?php if($e2glog['logfileformat'] == 1 || $e2glog['logfileformat'] == 4 || $e2glog['logdeniedcgi'] == "on") {?>
