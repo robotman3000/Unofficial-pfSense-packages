@@ -10,7 +10,6 @@ pkg/e2guardian_ldap.xml
 pkg/e2guardian_limits.xml
 pkg/e2guardian_log.xml
 pkg/e2guardian_phrase_acl.xml
-pkg/e2guardian_pics_acl.xml
 pkg/e2guardian_search_acl.xml
 pkg/e2guardian_sync.xml
 pkg/e2guardian_site_acl.xml
@@ -25,6 +24,7 @@ pkg/e2guardianfx.conf.template
 pkg/e2guardian_ips.xml
 pkg/e2guardian_users.xml
 @dir /usr/local/www
+www/e2guardian_ldap.php
 www/e2guardian_scheds.php
 www/e2guardian_logrotate.php
 www/e2guardian_about.php
