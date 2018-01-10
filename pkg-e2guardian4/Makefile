@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	pfSense-pkg-E2guardian4
-PORTVERSION=	0.4.2.7.1
+PORTVERSION=	0.4.2.8
 PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	# empty
@@ -60,8 +60,6 @@ do-install:
 	${INSTALL_DATA} -m 0644 ${FILESDIR}${PREFIX}/pkg/e2guardian_log.xml \
 		${STAGEDIR}${PREFIX}/pkg
 	${INSTALL_DATA} -m 0644 ${FILESDIR}${PREFIX}/pkg/e2guardian_phrase_acl.xml \
-		${STAGEDIR}${PREFIX}/pkg
-	${INSTALL_DATA} -m 0644 ${FILESDIR}${PREFIX}/pkg/e2guardian_pics_acl.xml \
 		${STAGEDIR}${PREFIX}/pkg
 	${INSTALL_DATA} -m 0644 ${FILESDIR}${PREFIX}/pkg/e2guardian_search_acl.xml \
 		${STAGEDIR}${PREFIX}/pkg

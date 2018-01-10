@@ -82,17 +82,12 @@
 			<text>Help</text>
 			<url>/e2guardian_about.php</url>
 		</tab>
-
 		<tab>
 			<text>Antivirus</text>
 			<url>/pkg_edit.php?xml=e2guardian_antivirus_acl.xml&amp;id=0</url>
 			<tab_level>2</tab_level>
 		</tab>
-		<tab>
-			<text>Pics</text>
-			<url>/pkg.php?xml=e2guardian_pics_acl.xml&amp;id=0</url>
-			<tab_level>2</tab_level>
-		</tab>
+
 		<tab>
 			<text>Phrase Lists</text>
 			<url>/pkg.php?xml=e2guardian_phrase_acl.xml</url>
