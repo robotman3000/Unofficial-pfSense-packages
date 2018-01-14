@@ -47,23 +47,6 @@ if ($_POST) {
 	$program = strtolower($_POST['program']);
 	$listr = "class='listr' style='font-family: Consolas, Lucida Console, monospace;'";
 	switch ($program) {
-		case 'accesshead':
-			// Show table headers
-			switch($e2glog['logfileformat']) {
-				case 1:
-					show_tds(array("","Date", "IP", "Url", "Response", "User", "Group", "Reason"));
-					break;
-				case 3:
-                               		show_tds(array("","Date", "User", "IP", "Status", "Address"));
-					break;
-				case 4:
-					show_tds(array("","IP", "Method", "Url", "Response", "Reason", "List Category", "Group"));
-					break;
-			}
-			break;
-		case 'e2gerrorhead':
-			show_tds(array("","Date", "User", "IP", "Url", "Reason", "Group"));
-			break;
 		case 'access':
 			// Define log file
 			$log = '/var/log/e2guardian/access.log';
@@ -71,6 +54,7 @@ if ($_POST) {
 			$logarr = fetch_log($log);
 			switch($e2glog['logfileformat']) {
 				case 1:
+					show_tds(array("","Date", "IP", "Url", "Response", "User", "Group", "Reason"));
 					foreach ($logarr as $logent) {
 						//split log
 						if (preg_match("/(\S+\s+\S+) (\S+) (\S+) (\S+) (.*) (GET|OPTIONS|POST|CONNECT) \d+ \d+ (.*) \d (\d\d\d) \S+ \S+ (\S+)/", $logent, $logline)) {
@@ -110,6 +94,7 @@ if ($_POST) {
 
 					break;
 				case 3:
+					show_tds(array("","Date", "User", "IP", "Status", "Address"));
 					// Print lines
 					foreach ($logarr as $logent) {
 						// Split line by space delimiter
@@ -138,7 +123,8 @@ if ($_POST) {
 					}
 					break;
                 case 4:
-foreach ($logarr as $logent) {
+						show_tds(array("","IP", "Method", "Url", "Response", "Reason", "List Category", "Group"));
+						foreach ($logarr as $logent) {
 						//split log
 						//if (preg_match("/(\S+\s+\S+) (\S+) (\S+) (\S+) (.*) (GET|OPTIONS|POST|CONNECT) \d+ \d+ (.*) \d (\d\d\d) \S+ \S+ (\S+)/", $logent, $logline)) {
                             //$logline = explode('/\t', $logent);
@@ -188,6 +174,7 @@ foreach ($logarr as $logent) {
 			}
 			break;
 		case 'e2gerror':
+			show_tds(array("","Date", "User", "IP", "Url", "Reason", "Group"));
 			// Define log file
                         $log = '/var/log/e2guardian/denied.log';
                         // Fetch lines
@@ -214,32 +201,6 @@ foreach ($logarr as $logent) {
 				echo "<td $listr>" . e2gm($logline[6]) . "</td>\n";
                                 echo "</tr>\n";
                         }
-			break;
-		case 'starthead':
-			// Show table headers
-			show_tds(array("Date-Time", "Daemon", "Action"));
-			break;
-		case 'start':
-			// Define log file
-			$log = '/var/log/e2guardian/start.log';
-			// Fetch lines
-			$logarr = fetch_log($log);
-			foreach ($logarr as $logent) {
-				// Split line by delimiter
-				//Thu Jun 22 00:49:13 BRT 2017 start
-				if (preg_match("@(.*) (\w+) (start)@", $logent, $logline)) {
-
-					// Word wrap the message
-					$logline[1] = htmlentities($logline[1]);
-					$logline[1] = html_autowrap($logline[1]);
-
-					echo "<tr>\n";
-					echo "<td $listr nowrap=\"nowrap\"><i class='fa fa-calendar'></i>&nbsp;{$logline[1]}</td>\n";
-					echo "<td $listr nowrap=\"nowrap\">{$logline[2]}</td>\n";
-					echo "<td><i class='fa fa-play-circle'></i></td>\n";
-					echo "</tr>\n";
-				}
-			}
 			break;
 		}
 }

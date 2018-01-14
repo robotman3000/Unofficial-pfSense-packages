@@ -145,7 +145,6 @@ if (is_array($config['installedpackages']['e2guardianlog'])) {
 				<tr><td>
 					<table class="table" xclaxss="tabcont" width="100%" border="0" cellspacing="2" cellpadding="0">
 						<thead id="e2gViewhead"><tr>
-							<td colspan="6" class="listtopic" align="center"><?=gettext("E2guardian - Access Logs"); ?></td>
 						</tr></thead>
 						<tbody id="e2gView">
 						<tr><td></td></tr>
@@ -168,7 +167,6 @@ if (is_array($config['installedpackages']['e2guardianlog'])) {
                                 <tr><td>
                                         <table class="table" xclaxss="tabcont" width="100%" border="0" cellspacing="2" cellpadding="0">
                                                 <thead id="e2gerrorhead"><tr>
-                                                        <td colspan="6" class="listtopic" align="center"><?=gettext("E2guardian - Access Logs"); ?></td>
                                                 </tr></thead>
                                                 <tbody id="e2gerror">
                                                 <tr><td></td></tr>
@@ -182,27 +180,6 @@ if (is_array($config['installedpackages']['e2guardianlog'])) {
         </div>
         <BR>
 	<?php } ?>
-	<div class="panel panel-default" style='margin:0 auto;width:450px'>
-	<div class="panel-heading"><h2 class="panel-title"><?=gettext("Watchdog start log"); ?></h2></div>
-	<div class="panel-body">
-		<div class="table-responsive">
-			<table class="table table-responsive table-striped table-hover table-condensed">
-				<tbody>
-				<tr><td>
-					<table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
-						<thead id="e2gWatchdoghead"><tr>
-							<td colspan="2" class="listtopic" align="center"><?=gettext("E2guardian - Watchdog Logs"); ?></td>
-						</tr></thead>
-						<tbody id="e2gWatchdog">
-						<tr><td></td></tr>
-						</tbody>
-					</table>
-				</td></tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
 
 <!-- Function to call programs logs -->
 <script type="text/javascript">
@@ -227,14 +204,9 @@ function showLog(content, url, program) {
 }
 
 function updateAllLogs() {
-	showLog('e2gViewhead', 'e2guardian_monitor_data.php', 'accesshead');
 	showLog('e2gView', 'e2guardian_monitor_data.php', 'access');
-	showLog('e2gerrorhead', 'e2guardian_monitor_data.php', 'e2gerrorhead');
     showLog('e2gerror', 'e2guardian_monitor_data.php', 'e2gerror');
-	showLog('e2gWatchdoghead', 'e2guardian_monitor_data.php', 'starthead');
-	showLog('e2gWatchdog', 'e2guardian_monitor_data.php', 'start');
-document.timeoutVal = $('#interval').val();
-
+	document.timeoutVal = $('#interval').val();
 	setTimeout(updateAllLogs, document.timeoutVal);
 }
 
@@ -245,4 +217,5 @@ events.push(function() {
 //]]>
 </script>
 <?php include("foot.inc"); ?>
+
 
