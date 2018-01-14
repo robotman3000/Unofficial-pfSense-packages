@@ -1611,6 +1611,7 @@ function e2guardian_validate_input($post, &$input_errors) {
                 }
 
 	}
+
 	foreach ($post as $key => $value) {
 		if (preg_match("/^(name|description)$/", $key) && $value == "") {
 			$input_errors[] = "{$key} could not be empty.";
@@ -1618,6 +1619,8 @@ function e2guardian_validate_input($post, &$input_errors) {
 			$input_errors[] = "{$value} cannot be used as name.";
 		} else if ($key == "name" && preg_match("/\W/", $value)) {
 			$input_errors[] = "{$value} cannot be used as name. Use only a-z 0-9 characters";
+        } else if ($key == "name" && !isValidXmlElementName($value)){
+			$input_errors[] = "{$value} cannot be used as name. It does not comply with the XML tag naming conventions";
 		} else if ($key == "group_options") {
 			$acls = array("pics", "phrase", "site", "url", "extension", "header", "content", "search");
 			foreach ($acls as $gacl) {
@@ -1631,6 +1634,16 @@ function e2guardian_validate_input($post, &$input_errors) {
 			$input_errors[] = "A valid number with a time reference is required for the field 'Update Frequency'";
 		}
 	}
+}
+
+function isValidXmlElementName($elementName)
+{
+    try {
+        new DOMElement($elementName);
+    } catch (DOMException $e) {
+        return false;
+    }
+    return true;
 }
 
 function e2guardian_php_install_command() {
