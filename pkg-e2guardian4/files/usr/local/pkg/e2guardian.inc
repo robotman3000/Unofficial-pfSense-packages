@@ -1454,8 +1454,8 @@ function e2guardian_start($via_rpc = "no", $install_process = false, $force_star
 					break;
 			}
 		} else {
-			log_error('Starting E2guardian');
-			mwexec("$script start");
+			//log_error('Starting E2guardian');
+			//mwexec("$script start");
 		}
 		$parent_status = ( $e2g_cfg['parentmode'] == 'local' ? "stop" : "start");
 		mwexec("$script_parent $parent_status");
