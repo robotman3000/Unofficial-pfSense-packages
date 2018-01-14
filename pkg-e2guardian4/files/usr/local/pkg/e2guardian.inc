@@ -1654,7 +1654,8 @@ function e2guardian_php_deinstall_command() {
 			"/usr/local/bin/php -q /usr/local/www/e2guardian_scheds.php",
 			E2GUARDIAN_DIR . "/bin/freshclam",
 			"/usr/local/bin/php /usr/local/www/e2guardian.php fetch_blacklist",
-			"/usr/local/bin/php /usr/local/www/e2guardian_ldap.php");
+			"/usr/local/bin/php /usr/local/www/e2guardian_ldap.php",
+			"/usr/local/bin/php -q /usr/local/www/e2guardian_logrotate.php";);
 	foreach ($crons as $cron_cmd) {
 		e2g_check_cron($cron_cmd, "remove");
 	}
