@@ -324,7 +324,7 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 	$trickledelay = ($e2guardian_limits['trickledelay'] ? $e2guardian_limits['trickledelay'] : "20");
 
 	// report and log
-	$reportlevel = ($e2guardian_log['report_level'] ? $e2guardian_log['report_level'] : "3");
+	$reportlevel = ($e2guardian_log['report_level'] ? $e2guardian_log['report_level'] : "-1");
 	if ($reportlevel == 1 || $reportlevel == 2) {
 		if (is_URL($e2guardian_log['reportingcgi'])) {
 			$accessdeniedaddress = "accessdeniedaddress = '" . $e2guardian_log['reportingcgi'] . "'";
@@ -988,10 +988,10 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 		$e2guardian_groups['bypass'] = ($e2guardian_groups['bypass'] ? $e2guardian_groups['bypass'] : "0");
 		$e2guardian_groups['infectionbypass'] = ($e2guardian_groups['infectionbypass'] ? $e2guardian_groups['infectionbypass'] : "0");
 		$e2guardian_groups['maxuploadsize'] = (is_numeric($e2guardian_groups['maxuploadsize']) ? $e2guardian_groups['maxuploadsize'] : "-1");
-		switch ($e2guardian_groups['reportinglevel']) {
+		$groupreportinglevel = "reportinglevel = " . ($e2guardian_groups['reportinglevel'] == 'global' ? $reportlevel : $e2guardian_groups['reportinglevel']);
+switch (($e2guardian_groups['reportinglevel'] == 'global' ? $reportlevel : $e2guardian_groups['reportinglevel'])) {
 			case "1":
 			case "2":
-				$groupreportinglevel = "reportinglevel = " . $e2guardian_groups['reportinglevel'];
 				if (is_URL($e2guardian_groups['reportingcgi'])) {
 					$groupaccessdeniedaddress = "accessdeniedaddress = '" . $e2guardian_groups['reportingcgi'] . "'";
 					e2g_check_logdeniedcgi($e2guardian_log['logdeniedcgi']);
@@ -1007,13 +1007,16 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 				break;
 			case "-1":
 			case "0":
+				$htmltemplate = "";
+$groupaccessdeniedaddress = "";
+$groupreportinglevel = "reportinglevel = 0";
+
+break;
 			case "3":
-				$groupreportinglevel = "reportinglevel = " . $e2guardian_groups['reportinglevel'];
 				$groupaccessdeniedaddress = "";
 				$htmltemplate = "htmltemplate='template.html'";
 				break;
 			default:
-				$groupreportinglevel = "";
 				$groupaccessdeniedaddress = "";
 		}
 
@@ -1655,7 +1658,7 @@ function e2guardian_php_deinstall_command() {
 			E2GUARDIAN_DIR . "/bin/freshclam",
 			"/usr/local/bin/php /usr/local/www/e2guardian.php fetch_blacklist",
 			"/usr/local/bin/php /usr/local/www/e2guardian_ldap.php",
-			"/usr/local/bin/php -q /usr/local/www/e2guardian_logrotate.php";);
+			"/usr/local/bin/php -q /usr/local/www/e2guardian_logrotate.php");
 	foreach ($crons as $cron_cmd) {
 		e2g_check_cron($cron_cmd, "remove");
 	}
