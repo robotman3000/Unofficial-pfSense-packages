@@ -74,26 +74,6 @@ function e2g_check_logdeniedcgi($logdeniedcgi) {
 	}
 }
 
-function e2g_watchdog_script($wpid, $wcmd, $winfo){
-	$wlog = "/var/log/e2guardian/start.log";
-	$wscript = <<<EOF
-# watchdog script for {$winfo}
-	if [ -f {$wpid} ];then
-		cat {$wpid} | xargs ps
-		if [ $? -ne 0 ]; then
-			{$wcmd}
-			echo "`date +'%a %b %d %T %Y'` {$winfo} start" >> {$wlog}
-		fi
-	else
-		{$wcmd}
-		echo "`date +'%a %b %d %T %Y'` {$winfo} start" >> {$wlog}
-	fi
-
-EOF;
-
-	return($wscript);
-}
-
 function e2g_check_squid_pkg($export_acl,$acls){
 	global $config, $acl_include_files;
 	if (!is_array($config['installedpackages']['squid'])) {
@@ -231,7 +211,6 @@ function sync_package_e2guardian($via_rpc = "no", $install_process = false) {
 			'interface' => 'lo0',
 			'filterports' => '8080',
 			'parentmode' => 'local',
-			'watchdog'   => 'on',
 			'applyaction' => '-Q',
 			'httpworkers' => '256',
 			'daemon_options' => 'softrestart');
@@ -1253,41 +1232,10 @@ EOF;
 		e2g_check_cron($cron_cmd, "remove");
 	}
 	
-	//watchdog script
+	//watchdog script; robotman3000 - Leave this until the branch to the v5 gui
 	$cron_cmd = "/usr/local/bin/e2g_watchdog.sh";
-	if ($e2guardian['watchdog'] == "on") {
-		e2g_check_cron("/bin/sh $cron_cmd", "create");
-		if ($e2guardian['parentmode'] == 'local') {
-			//e2g parent
-			$parent_pid = "/var/run/squid/e2gsquid.pid";
-			$parent_cmd = "/usr/local/etc/rc.d/e2parent.sh start";
-			$watchdog_parent = e2g_watchdog_script($parent_pid, $parent_cmd, "parent");
-		}
-
-		//e2g watchdog
-		$we2g_pid = "/var/run/e2guardian.pid";
-		$we2g_cmd = "/usr/local/etc/rc.d/e2guardian.sh start";
-		$watchdog_e2g = e2g_watchdog_script($we2g_pid,$we2g_cmd,"e2guardian");
-
-		//e2g main squid process
-		if (is_array($config['installedpackages']['squid'])) {
-			$squid_cfg = $config['installedpackages']['squid']['config'][0];
-			if ($squid_cfg['enable_squid'] == "on") {
-				$msqd_pid = "/var/run/squid/squid.pid";
-				$msqd_cmd = "/usr/local/sbin/squid -f /usr/local/etc/squid/squid.conf";
-				$watchdog_squid = e2g_watchdog_script($msqd_pid, $msqd_cmd, "squid");
-			}
-		}
-
-		$watchdog  =  "#!/bin/sh\n";
-		$watchdog .= "for a in 00 10 20 30 40 50\ndo\n";
-		$watchdog .= "\t{$watchdog_e2g}\n\t{$watchdog_parent}\n\t{$watchdog_squid}\n";
-		$watchdog .= "\tsleep 10\ndone\n";
-		file_put_contents($cron_cmd, $watchdog, LOCK_EX);
-	} else {
-		file_put_contents($cron_cmd, "", LOCK_EX);
-		e2g_check_cron("/bin/sh $cron_cmd", "remove");
-	}
+	file_put_contents($cron_cmd, "", LOCK_EX);
+	e2g_check_cron("/bin/sh $cron_cmd", "remove");
 
 	// Check acl schedules
 	$cron_cmd = "/usr/local/bin/php -q /usr/local/www/e2guardian_scheds.php";
@@ -1702,7 +1650,7 @@ function e2guardian_php_deinstall_command() {
 		unlink_if_exists("/usr/local/pkg/e2guardian_{$e2gxml}.xml");
 	}
 	echo "Removing package crons...\n";
-	$crons = array("/bin/sh /usr/local/bin/e2g_watchdog.sh",
+	$crons = array("/bin/sh /usr/local/bin/e2g_watchdog.sh", //robotman3000 - Leave this until the branch to the v5 gui
 			"/usr/local/bin/php -q /usr/local/www/e2guardian_scheds.php",
 			E2GUARDIAN_DIR . "/bin/freshclam",
 			"/usr/local/bin/php /usr/local/www/e2guardian.php fetch_blacklist",
@@ -1721,15 +1669,13 @@ function e2guardian_php_deinstall_command() {
 			unlink($ecmd);
 		}
 	}
-	//prevent e2guardian binary from starting from watchdog during package uninstall
-	chmod("/usr/local/sbin/e2guardian",0444);
 
 	echo "Removing conf files...\n";
 	$rconfs = array('*sample', '*conf', 'lists/*.*', 'authplugins/*sample', 'contentscanners/*sample', 'downloadmanagers/*sample');
 	foreach ($rconfs as $rm) {
 		system("/bin/rm -f /usr/local/etc/e2guardian/$rm");
 	}
-	
+    
 	clear_subsystem_dirty('e2guardian');
 }
 
