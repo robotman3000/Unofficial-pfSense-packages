@@ -53,8 +53,8 @@ if ($last_scheds !== $e2g_sched_in_use) {
 	clear_subsystem_dirty('e2guardian');
 	$max_threads = "sysctl kern.threads.max_threads_per_proc=20480";		
 	//reload e2guardian
-	//system("$max_threads;/usr/local/sbin/e2guardian -r");
-    service_control_restart('e2guardian');
+	system("$max_threads;/usr/local/sbin/e2guardian -g");
+        //service_control_restart('e2guardian');
 } else {
 	print "No changes on schedule\n";
 }
