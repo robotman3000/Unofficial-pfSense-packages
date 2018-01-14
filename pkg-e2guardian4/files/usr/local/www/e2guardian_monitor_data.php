@@ -228,6 +228,8 @@ function fetch_log($log) {
 	$log = escapeshellarg($log);
 	// Get data from form post
 	$lines = escapeshellarg(is_numeric($_POST['maxlines']) ? $_POST['maxlines'] : 50);
+	$readlines = escapeshellarg(is_numeric($_POST['readlines']) ? $_POST['readlines'] : 2000);
+    //TODO: Add a safty for when readlines is excessively large
 	if (preg_match("/!/", htmlspecialchars($_POST['strfilter']))) {
 		$grep_arg = "-iv";
 	} else {
@@ -243,7 +245,7 @@ function fetch_log($log) {
 	//arrumar aqui
 	// Get logs based in filter expression
 	if ($filter != "" && $program == "access") {
-		exec("/usr/bin/tail -n 2000 {$log} | /usr/bin/grep {$grep_arg} " . escapeshellarg($filter). " | /usr/bin/tail -r -n {$lines} {$parser} ", ${$logarr.$program});
+		exec("/usr/bin/tail -n {$readlines} {$log} | /usr/bin/grep {$grep_arg} " . escapeshellarg($filter). " | /usr/bin/tail -r -n {$lines} {$parser} ", ${$logarr.$program});
 	} else {
 		exec("/usr/bin/tail -r -n {$lines} {$log} {$parser}", ${$logarr.$program});
 	}

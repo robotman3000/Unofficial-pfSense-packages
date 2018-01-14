@@ -129,6 +129,16 @@ if (is_array($config['installedpackages']['e2guardianlog'])) {
 						</span>
 					</td>
 				</tr>
+				<tr>
+					<td width="22%" valign="top" class="vncellreq">String filter limit:</td>
+					<td width="78%" class="vtable">
+						<input name="readlines" type="text" class="formfld search" id="readlines" size="50" value="" />
+						<br/>
+						<span class="vexpl">
+							<?=gettext("Enter the number of log entries that should be checked to match the string filter")?><br/>
+						</span>
+					</td>
+				</tr>
 				</tbody>
 			</table>
 			</form>
@@ -191,6 +201,7 @@ function showLog(content, url, program) {
 		type: 'post',
 		data: {
 			maxlines: $('#maxlines').val(),
+			readlines: $('#readlines').val(),
 			strfilter: $('#strfilter').val(),
 			error: $('#error').val(),
 			program: program,
