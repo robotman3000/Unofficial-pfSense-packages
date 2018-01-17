@@ -44,7 +44,7 @@ $dgf= <<<EOF
 groupname = '{$e2guardian_groups['name']}'
 
 # Much logic has moved to storyboard files
-storyboard = '{$e2_dir}/examplef1.story'
+storyboard = '{$e2_dir}/etc/e2guardian/examplef1.story'
 
 # Enable legacy (DG) ssl logic								TODO INCLUDE ON GUI
 #
@@ -69,74 +69,74 @@ exceptionphraselist = '{$e2_dir}/etc/e2guardian/lists/exceptionphraselist.g_{$e2
 ### NOTE - New format for all other list definition in v5.0 
 
 #banned lists
-sitelist = 'name=banned,messageno=500,path={$e2_dir}/lists/bannedsitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=banned,messageno=510,path={$e2_dir}/lists/bannedsiteiplist.g_{$e2guardian_groups['name']}'
-urllist = 'name=banned,messageno=501,path={$e2_dir}/lists/bannedurllist.g_{$e2guardian_groups['name']}'
-regexpboollist = 'name=banned,messageno=503,path={$e2_dir}/lists/bannedregexpurllist.g_{$e2guardian_groups['name']}'
-regexpboollist = 'name=banneduseragent,messageno=522,path={$e2_dir}/lists/bannedregexpuseragentlist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=banned,messageno=500,path={$e2_dir}/etc/e2guardian/lists/bannedsitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=banned,messageno=510,path={$e2_dir}/etc/e2guardian/lists/bannedsiteiplist.g_{$e2guardian_groups['name']}'
+urllist = 'name=banned,messageno=501,path={$e2_dir}/etc/e2guardian/lists/bannedurllist.g_{$e2guardian_groups['name']}'
+regexpboollist = 'name=banned,messageno=503,path={$e2_dir}/etc/e2guardian/lists/bannedregexpurllist.g_{$e2guardian_groups['name']}'
+regexpboollist = 'name=banneduseragent,messageno=522,path={$e2_dir}/etc/e2guardian/lists/bannedregexpuseragentlist.g_{$e2guardian_groups['name']}'
 
-sitelist = 'name=bannedssl,messageno=520,path={$e2_dir}/lists/bannedsslsitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=bannedssl,messageno=520,path={$e2_dir}/lists/bannedsslsiteiplist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=bannedssl,messageno=520,path={$e2_dir}/etc/e2guardian/lists/bannedsslsitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=bannedssl,messageno=520,path={$e2_dir}/etc/e2guardian/lists/bannedsslsiteiplist.g_{$e2guardian_groups['name']}'
 
 #grey (i.e. content check) lists
-sitelist = 'name=grey,path={$e2_dir}/lists/greysitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=grey,path={$e2_dir}/lists/greysiteiplist.g_{$e2guardian_groups['name']}'
-urllist = 'name=grey,path={$e2_dir}/lists/greyurllist.g_{$e2guardian_groups['name']}'
-sitelist = 'name=greyssl,path={$e2_dir}/lists/greysslsitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=greyssl,path={$e2_dir}/lists/greysslsiteiplist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=grey,path={$e2_dir}/etc/e2guardian/lists/greysitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=grey,path={$e2_dir}/etc/e2guardian/lists/greysiteiplist.g_{$e2guardian_groups['name']}'
+urllist = 'name=grey,path={$e2_dir}/etc/e2guardian/lists/greyurllist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=greyssl,path={$e2_dir}/etc/e2guardian/lists/greysslsitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=greyssl,path={$e2_dir}/etc/e2guardian/lists/greysslsiteiplist.g_{$e2guardian_groups['name']}'
 
 #exception lists
-sitelist = 'name=exception,messageno=602,path={$e2_dir}/lists/exceptionsitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=exception,messageno=602,path={$e2_dir}/lists/exceptionsiteiplist.g_{$e2guardian_groups['name']}'
-urllist = 'name=exception,messageno=603,path={$e2_dir}/lists/exceptionurllist.g_{$e2guardian_groups['name']}'
-regexpboollist = 'name=exception,messageno=609,path={$e2_dir}/lists/exceptionregexpurllist.g_{$e2guardian_groups['name']}'
-regexpurlboollist = 'name=exceptionuseragent,messageno=610,path={$e2_dir}/lists/exceptionregexpuseragentlist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=exception,messageno=602,path={$e2_dir}/etc/e2guardian/lists/exceptionsitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=exception,messageno=602,path={$e2_dir}/etc/e2guardian/lists/exceptionsiteiplist.g_{$e2guardian_groups['name']}'
+urllist = 'name=exception,messageno=603,path={$e2_dir}/etc/e2guardian/lists/exceptionurllist.g_{$e2guardian_groups['name']}'
+regexpboollist = 'name=exception,messageno=609,path={$e2_dir}/etc/e2guardian/lists/exceptionregexpurllist.g_{$e2guardian_groups['name']}'
+regexpurlboollist = 'name=exceptionuseragent,messageno=610,path={$e2_dir}/etc/e2guardian/lists/exceptionregexpuseragentlist.g_{$e2guardian_groups['name']}'
 
-#sitelist = 'name=authexception,path={$e2_dir}/lists/authexceptionsitelist.g_{$e2guardian_groups['name']}'
-#ipsitelist = 'name=authexception,path={$e2_dir}/lists/authexceptionsiteiplist.g_{$e2guardian_groups['name']}'
-#urllist = 'name=authexception,messageno=603,path={$e2_dir}/lists/authexceptionurllist.g_{$e2guardian_groups['name']}'
+#sitelist = 'name=authexception,path={$e2_dir}/etc/e2guardian/lists/authexceptionsitelist.g_{$e2guardian_groups['name']}'
+#ipsitelist = 'name=authexception,path={$e2_dir}/etc/e2guardian/lists/authexceptionsiteiplist.g_{$e2guardian_groups['name']}'
+#urllist = 'name=authexception,messageno=603,path={$e2_dir}/etc/e2guardian/lists/authexceptionurllist.g_{$e2guardian_groups['name']}'
 
-sitelist = 'name=refererexception,messageno=620,path={$e2_dir}/lists/refererexceptionsitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=refererexception,messageno=620,path={$e2_dir}/lists/refererexceptionsiteiplist.g_{$e2guardian_groups['name']}'
-urllist = 'name=refererexception,messageno=620,path={$e2_dir}/lists/refererexceptionurllist.g_{$e2guardian_groups['name']}'
-sitelist = 'name=embededreferer,path={$e2_dir}/lists/embededreferersitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=embededreferer,path={$e2_dir}/lists/embededreferersiteiplist.g_{$e2guardian_groups['name']}'
-urllist = 'name=embededreferer,path={$e2_dir}/lists/embededrefererurllist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=refererexception,messageno=620,path={$e2_dir}/etc/e2guardian/lists/refererexceptionsitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=refererexception,messageno=620,path={$e2_dir}/etc/e2guardian/lists/refererexceptionsiteiplist.g_{$e2guardian_groups['name']}'
+urllist = 'name=refererexception,messageno=620,path={$e2_dir}/etc/e2guardian/lists/refererexceptionurllist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=embededreferer,path={$e2_dir}/etc/e2guardian/lists/embededreferersitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=embededreferer,path={$e2_dir}/etc/e2guardian/lists/embededreferersiteiplist.g_{$e2guardian_groups['name']}'
+urllist = 'name=embededreferer,path={$e2_dir}/etc/e2guardian/lists/embededrefererurllist.g_{$e2guardian_groups['name']}'
 
-sitelist = 'name=refererexception,messageno=620,path={$e2_dir}/lists/refererexceptionsitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=refererexception,messageno=620,path={$e2_dir}/lists/refererexceptionsiteiplist.g_{$e2guardian_groups['name']}'
-urllist = 'name=refererexception,messageno=620,path={$e2_dir}/lists/refererexceptionurllist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=refererexception,messageno=620,path={$e2_dir}/etc/e2guardian/lists/refererexceptionsitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=refererexception,messageno=620,path={$e2_dir}/etc/e2guardian/lists/refererexceptionsiteiplist.g_{$e2guardian_groups['name']}'
+urllist = 'name=refererexception,messageno=620,path={$e2_dir}/etc/e2guardian/lists/refererexceptionurllist.g_{$e2guardian_groups['name']}'
 
 #modification lists
-regexpreplacelist = 'name=change,path={$e2_dir}/lists/urlregexplist.g_{$e2guardian_groups['name']}'
-regexpreplacelist = 'name=sslreplace,path={$e2_dir}/lists/sslsiteregexplist.g_{$e2guardian_groups['name']}'
+regexpreplacelist = 'name=change,path={$e2_dir}/etc/e2guardian/lists/urlregexplist.g_{$e2guardian_groups['name']}'
+regexpreplacelist = 'name=sslreplace,path={$e2_dir}/etc/e2guardian/lists/sslsiteregexplist.g_{$e2guardian_groups['name']}'
 
 #redirection lists
-regexpreplacelist = 'name=redirect,path={$e2_dir}/lists/urlredirectregexplist.g_{$e2guardian_groups['name']}'
+regexpreplacelist = 'name=redirect,path={$e2_dir}/etc/e2guardian/lists/urlredirectregexplist.g_{$e2guardian_groups['name']}'
 
-contentregexplist = '{$e2_dir}/lists/contentregexplist.g_{$e2guardian_groups['name']}'
+contentregexplist = '{$e2_dir}/etc/e2guardian/lists/contentregexplist.g_{$e2guardian_groups['name']}'
 
 # local versions of lists 
 
 #local banned
-#sitelist = 'name=localbanned,messageno=560,path={$e2_dir}/lists/localbannedsitelist.g_{$e2guardian_groups['name']}'
-#ipsitelist = 'name=localbanned,messageno=560,path={$e2_dir}/lists/localbannedsiteiplist.g_{$e2guardian_groups['name']}'
-#urllist = 'name=localbanned,messageno=561,path={$e2_dir}/lists/localbannedurllist.g_{$e2guardian_groups['name']}'
-#sitelist = 'name=localbannedssl,messageno=580,path={$e2_dir}/lists/localbannedsslsitelist.g_{$e2guardian_groups['name']}'
-#ipsitelist = 'name=localbannedssl,messageno=580,path={$e2_dir}/lists/localbannedsslsiteiplist.g_{$e2guardian_groups['name']}'
-searchlist = 'name=localbanned,messageno=581,path={$e2_dir}/lists/localbannedsearchlist.g_{$e2guardian_groups['name']}'
+#sitelist = 'name=localbanned,messageno=560,path={$e2_dir}/etc/e2guardian/lists/localbannedsitelist.g_{$e2guardian_groups['name']}'
+#ipsitelist = 'name=localbanned,messageno=560,path={$e2_dir}/etc/e2guardian/lists/localbannedsiteiplist.g_{$e2guardian_groups['name']}'
+#urllist = 'name=localbanned,messageno=561,path={$e2_dir}/etc/e2guardian/lists/localbannedurllist.g_{$e2guardian_groups['name']}'
+#sitelist = 'name=localbannedssl,messageno=580,path={$e2_dir}/etc/e2guardian/lists/localbannedsslsitelist.g_{$e2guardian_groups['name']}'
+#ipsitelist = 'name=localbannedssl,messageno=580,path={$e2_dir}/etc/e2guardian/lists/localbannedsslsiteiplist.g_{$e2guardian_groups['name']}'
+searchlist = 'name=localbanned,messageno=581,path={$e2_dir}/etc/e2guardian/lists/localbannedsearchlist.g_{$e2guardian_groups['name']}'
 
 #local grey lists
-#sitelist = 'name=localgrey,path={$e2_dir}/lists/localgreysitelist.g_{$e2guardian_groups['name']}'
-#ipsitelist = 'name=localgrey,path={$e2_dir}/lists/localgreysiteiplist.g_{$e2guardian_groups['name']}'
-#urllist = 'name=localgrey,path={$e2_dir}/lists/localgreyurllist.g_{$e2guardian_groups['name']}'
-#sitelist = 'name=localgreyssl,path={$e2_dir}/lists/localgreysslsitelist.g_{$e2guardian_groups['name']}'
-#ipsitelist = 'name=localgreyssl,path={$e2_dir}/lists/localgreysslsiteiplist.g_{$e2guardian_groups['name']}'
+#sitelist = 'name=localgrey,path={$e2_dir}/etc/e2guardian/lists/localgreysitelist.g_{$e2guardian_groups['name']}'
+#ipsitelist = 'name=localgrey,path={$e2_dir}/etc/e2guardian/lists/localgreysiteiplist.g_{$e2guardian_groups['name']}'
+#urllist = 'name=localgrey,path={$e2_dir}/etc/e2guardian/lists/localgreyurllist.g_{$e2guardian_groups['name']}'
+#sitelist = 'name=localgreyssl,path={$e2_dir}/etc/e2guardian/lists/localgreysslsitelist.g_{$e2guardian_groups['name']}'
+#ipsitelist = 'name=localgreyssl,path={$e2_dir}/etc/e2guardian/lists/localgreysslsiteiplist.g_{$e2guardian_groups['name']}'
 
 #local exception lists
-#sitelist = 'name=localexception,messageno=662,path={$e2_dir}/lists/localexceptionsitelist.g_{$e2guardian_groups['name']}'
-#ipsitelist = 'name=localexception,messageno=662,path={$e2_dir}/lists/localexceptionsiteiplist.g_{$e2guardian_groups['name']}'
-#urllist = 'name=localexception,messageno=663,path={$e2_dir}/lists/localexceptionurllist.g_{$e2guardian_groups['name']}'
+#sitelist = 'name=localexception,messageno=662,path={$e2_dir}/etc/e2guardian/lists/localexceptionsitelist.g_{$e2guardian_groups['name']}'
+#ipsitelist = 'name=localexception,messageno=662,path={$e2_dir}/etc/e2guardian/lists/localexceptionsiteiplist.g_{$e2guardian_groups['name']}'
+#urllist = 'name=localexception,messageno=663,path={$e2_dir}/etc/e2guardian/lists/localexceptionurllist.g_{$e2guardian_groups['name']}'
 
 
 # Filetype filtering
@@ -157,21 +157,21 @@ searchlist = 'name=localbanned,messageno=581,path={$e2_dir}/lists/localbannedsea
 # (on | off)
 #
 blockdownloads = off
-fileextlist = 'name=exceptionextension,messageno=900,path={$e2_dir}/lists/exceptionextensionlist.g_{$e2guardian_groups['name']}'
-mimelist = 'name=exceptionmime,messageno=750,path={$e2_dir}/lists/exceptionextensionlist.g_{$e2guardian_groups['name']}'
+fileextlist = 'name=exceptionextension,messageno=900,path={$e2_dir}/etc/e2guardian/lists/exceptionextensionlist.g_{$e2guardian_groups['name']}'
+mimelist = 'name=exceptionmime,messageno=750,path={$e2_dir}/etc/e2guardian/lists/exceptionextensionlist.g_{$e2guardian_groups['name']}'
 #
 # Use the following lists to block specific kinds of file downloads.
 # The two exception lists above can be used to override these.
 #
-fileextlist = 'name=bannedextension,messageno=999,path={$e2_dir}/lists/bannedextensionlist.g_{$e2guardian_groups['name']}'
-mimelist = 'name=bannedmime,messageno=750,path={$e2_dir}/lists/bannedmimeitypelist.g_{$e2guardian_groups['name']}'
+fileextlist = 'name=bannedextension,messageno=999,path={$e2_dir}/etc/e2guardian/lists/bannedextensionlist.g_{$e2guardian_groups['name']}'
+mimelist = 'name=bannedmime,messageno=750,path={$e2_dir}/etc/e2guardian/lists/bannedmimeitypelist.g_{$e2guardian_groups['name']}'
 #
 # In either file filtering mode, the following list can be used to override
 # MIME type & extension blocks for particular domains & URLs (trusted download sites).
 #
-sitelist = 'name=exceptionfile,path={$e2_dir}/lists/exceptionfilesitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=exceptionfile,path={$e2_dir}/lists/exceptionfilesiteiplist.g_{$e2guardian_groups['name']}'
-urllist = 'name=exceptionfile,path={$e2_dir}/lists/exceptionfileurllist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=exceptionfile,path={$e2_dir}/etc/e2guardian/lists/exceptionfilesitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=exceptionfile,path={$e2_dir}/etc/e2guardian/lists/exceptionfilesiteiplist.g_{$e2guardian_groups['name']}'
+urllist = 'name=exceptionfile,path={$e2_dir}/etc/e2guardian/lists/exceptionfileurllist.g_{$e2guardian_groups['name']}'
 
 # POST protection (web upload and forms)
 # does not block forms without any file upload, i.e. this is just for
@@ -188,10 +188,10 @@ maxuploadsize = {$e2guardian_groups['maxuploadsize']}
 # Supply categorised lists here and the category string shall be logged against
 # matching requests, but matching these lists does not perform any filtering
 # action.
-#sitelist = 'name=log,path={$e2_dir}/lists/logsitelist.g_{$e2guardian_groups['name']}'
-#ipsitelist = 'name=log,path={$e2_dir}/lists/logsiteiplist.g_{$e2guardian_groups['name']}'
-#urllist = 'name=log,path={$e2_dir}/lists/logurllist.g_{$e2guardian_groups['name']}'
-#regexpboollist = 'name=log,path={$e2_dir}/lists/logregexpurllist.g_{$e2guardian_groups['name']}'
+#sitelist = 'name=log,path={$e2_dir}/etc/e2guardian/lists/logsitelist.g_{$e2guardian_groups['name']}'
+#ipsitelist = 'name=log,path={$e2_dir}/etc/e2guardian/lists/logsiteiplist.g_{$e2guardian_groups['name']}'
+#urllist = 'name=log,path={$e2_dir}/etc/e2guardian/lists/logurllist.g_{$e2guardian_groups['name']}'
+#regexpboollist = 'name=log,path={$e2_dir}/etc/e2guardian/lists/logregexpurllist.g_{$e2guardian_groups['name']}'
 
 # Outgoing HTTP header rules:
 # Optional lists for blocking based on, and modification of, outgoing HTTP
@@ -202,19 +202,19 @@ maxuploadsize = {$e2guardian_groups['maxuploadsize']}
 # Headers are matched/replaced on a line-by-line basis, not as a contiguous
 # block.
 # Use for example, to remove cookies or prevent certain user-agents.
-#headerregexplist = '{$e2_dir}/lists/headerregexplist'
-regexpreplacelist = 'name=headermods,path={$e2_dir}/lists/headerregexplist.g_{$e2guardian_groups['name']}'
-##bannedregexpheaderlist = '{$e2_dir}/lists/bannedregexpheaderlist'
-regexpboollist = 'name=bannedheader,path={$e2_dir}/lists/bannedregexpheaderlist.g_{$e2guardian_groups['name']}'
-##exceptionregexpheaderlist = '{$e2_dir}/lists/exceptionregexpheaderlist'
-regexpboollist = 'name=exceptionheader,path={$e2_dir}/lists/exceptionregexpheaderlist.g_{$e2guardian_groups['name']}'
+#headerregexplist = '{$e2_dir}/etc/e2guardian/lists/headerregexplist'
+regexpreplacelist = 'name=headermods,path={$e2_dir}/etc/e2guardian/lists/headerregexplist.g_{$e2guardian_groups['name']}'
+##bannedregexpheaderlist = '{$e2_dir}/etc/e2guardian/lists/bannedregexpheaderlist'
+regexpboollist = 'name=bannedheader,path={$e2_dir}/etc/e2guardian/lists/bannedregexpheaderlist.g_{$e2guardian_groups['name']}'
+##exceptionregexpheaderlist = '{$e2_dir}/etc/e2guardian/lists/exceptionregexpheaderlist'
+regexpboollist = 'name=exceptionheader,path={$e2_dir}/etc/e2guardian/lists/exceptionregexpheaderlist.g_{$e2guardian_groups['name']}'
 
 #Virus checking exceptions - matched urls will not be virus checked
-mimelist = 'name=exceptionvirus,path={$e2_dir}/lists/contentscanners/exceptionvirusmimetypelist.g_{$e2guardian_groups['name']}'
+mimelist = 'name=exceptionvirus,path={$e2_dir}/etc/e2guardian/lists/contentscanners/exceptionvirusmimetypelist.g_{$e2guardian_groups['name']}'
 fileextlist = 'name=exceptionvirus,path=/home/dg/etc/config_i1/e2guardian/lists/contentscanners/exceptionvirusextensionlist.g_{$e2guardian_groups['name']}'
-sitelist = 'name=exceptionvirus,path={$e2_dir}/lists/contentscanners/exceptionvirussitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=exceptionvirus,path={$e2_dir}/lists/contentscanners/exceptionvirussiteiplist.g_{$e2guardian_groups['name']}'
-urllist = 'name=exceptionvirus,path={$e2_dir}/lists/contentscanners/exceptionvirusurllist.g_{$e2guardian_groups['name']}'
+sitelist = 'name=exceptionvirus,path={$e2_dir}/etc/e2guardian/lists/contentscanners/exceptionvirussitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=exceptionvirus,path={$e2_dir}/etc/e2guardian/lists/contentscanners/exceptionvirussiteiplist.g_{$e2guardian_groups['name']}'
+urllist = 'name=exceptionvirus,path={$e2_dir}/etc/e2guardian/lists/contentscanners/exceptionvirusurllist.g_{$e2guardian_groups['name']}'
 
 
 # Phrase filtering additional mime types (by default text/*)					TODO INLCUDE ON GUI
@@ -262,11 +262,11 @@ naughtynesslimit = {$e2guardian_groups['naughtynesslimit']}
 # List of regular expressions for matching search engine URLs.  It is assumed
 # that the search terms themselves will be contained in the 
 # of output of each expression.
-regexpreplacelist = 'name=searchterms,path={$e2_dir}/lists/searchregexplist.g_{$e2guardian_groups['name']}'
+regexpreplacelist = 'name=searchterms,path={$e2_dir}/etc/e2guardian/lists/searchregexplist.g_{$e2guardian_groups['name']}'
 #
 # Banned Search Term list(s) for option 1
-searchlist = 'name=banned,path={$e2_dir}/lists/bannedsearchlist.g_{$e2guardian_groups['name']}'
-searchlist = 'name=override,path={$e2_dir}/lists/bannedsearchoveridelist.g_{$e2guardian_groups['name']}'
+searchlist = 'name=banned,path={$e2_dir}/etc/e2guardian/lists/bannedsearchlist.g_{$e2guardian_groups['name']}'
+searchlist = 'name=override,path={$e2_dir}/etc/e2guardian/lists/bannedsearchoveridelist.g_{$e2guardian_groups['name']}'
 
 
 # Search term limit
@@ -290,9 +290,9 @@ searchtermlimit = {$e2guardian_groups['searchtermlimit']}
 # Please note that all or none of the below should be uncommented, not a
 # mixture.
 # NOTE: these are phrase lists and still use the old style defines
-#bannedsearchtermlist = '{$e2_dir}/lists/bannedsearchtermlist'
-#weightedsearchtermlist = '{$e2_dir}/lists/weightedsearchtermlist'
-#exceptionsearchtermlist = '{$e2_dir}/lists/exceptionsearchtermlist'
+#bannedsearchtermlist = '{$e2_dir}/etc/e2guardian/lists/bannedsearchtermlist'
+#weightedsearchtermlist = '{$e2_dir}/etc/e2guardian/lists/weightedsearchtermlist'
+#exceptionsearchtermlist = '{$e2_dir}/etc/e2guardian/lists/exceptionsearchtermlist'
 
 # Category display threshold
 # This option only applies to pages blocked by weighted phrase filtering.
@@ -345,9 +345,9 @@ bypass = {$e2guardian_groups['bypass']}
 bypasskey = '{$e2guardian_groups['bypasskey']}'
 
 #  Users will not be able to bypass sites/urls in these lists
-sitelist = 'name=bannedbypass,messageno=500,path={$e2_dir}/lists/bannedsitelistwithbypass.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=bannedbypass,messageno=500,path={$e2_dir}/lists/bannedsiteiplistwithbypass.g_{$e2guardian_groups['name']}'
-urllist = 'name=bannedbypass,messageno=501,path={$e2_dir}/lists/bannedurllistwithbypass.g_{$e2guardian_groups['name']}'
+sitelist = 'name=bannedbypass,messageno=500,path={$e2_dir}/etc/e2guardian/lists/bannedsitelistwithbypass.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=bannedbypass,messageno=500,path={$e2_dir}/etc/e2guardian/lists/bannedsiteiplistwithbypass.g_{$e2guardian_groups['name']}'
+urllist = 'name=bannedbypass,messageno=501,path={$e2_dir}/etc/e2guardian/lists/bannedurllistwithbypass.g_{$e2guardian_groups['name']}'
 
 
 # Infection/Scan Error Bypass
@@ -553,9 +553,9 @@ mitmcheckcert = {$e2guardian_groups['sslcheckcert']}
 # or to reduced CPU load by not checking certs on heavily used sites (e.g. Google, Bing)
 # Use with caution!
 # Ignored if mitmcheckcert is 'off'
-#nocheckcertsitelist = '{$e2_dir}/lists/nocheckcertsitelist'
-sitelist = 'name=nocheckcert,path={$e2_dir}/lists/nocheckcertsitelist.g_{$e2guardian_groups['name']}'
-ipsitelist = 'name=nocheckcert,path={$e2_dir}/lists/nocheckcertsiteiplist.g_{$e2guardian_groups['name']}'
+#nocheckcertsitelist = '{$e2_dir}/etc/e2guardian/lists/nocheckcertsitelist'
+sitelist = 'name=nocheckcert,path={$e2_dir}/etc/e2guardian/lists/nocheckcertsitelist.g_{$e2guardian_groups['name']}'
+ipsitelist = 'name=nocheckcert,path={$e2_dir}/etc/e2guardian/lists/nocheckcertsiteiplist.g_{$e2guardian_groups['name']}'
 #
 EOF;
 
