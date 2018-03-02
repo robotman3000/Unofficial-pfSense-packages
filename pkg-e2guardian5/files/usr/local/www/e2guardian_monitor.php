@@ -104,7 +104,7 @@ if (is_array($config['installedpackages']['e2guardianlog'])) {
 				</tr>
 				<?php if($e2glog['logfileformat'] == 1 || $e2glog['logfileformat'] == 4 || $e2glog['logdeniedcgi'] == "on") {?>
 				<tr>
-				<td width="22%" valign="top" class="vncellreq">Erro to show:</td>
+				<td width="22%" valign="top" class="vncellreq">Error to show:</td>
                                         <td width="78%" class="vtable">
                                                 <select name="error" id="error">
                                                         <option value="reason">Reason</option>
